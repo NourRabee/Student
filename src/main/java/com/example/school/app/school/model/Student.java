@@ -1,4 +1,4 @@
-package com.example.demo.student.model;
+package com.example.school.app.school.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
