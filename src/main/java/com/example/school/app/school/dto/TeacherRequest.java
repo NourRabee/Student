@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
@@ -12,4 +14,6 @@ public class TeacherRequest {
 
     private String id;
     private String email;
+    private LocalDate dob;
+    private String course;
 }
