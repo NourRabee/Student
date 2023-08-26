@@ -6,6 +6,7 @@ import com.example.school.app.school.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -27,15 +28,21 @@ public class TeacherController {
 
     }
     @GetMapping
-    public List<TeacherResponse> radAll(){
+    public List<TeacherResponse> radAll(@RequestParam(name = "id",
+            required = false) String id){
 
-        return teacherService.read();
+        if(id == null){
+
+            return teacherService.read();
+        }else
+            return Collections.singletonList(teacherService.read(id));
 
     }
     @DeleteMapping
-    public void deleteTeacher(@RequestBody TeacherRequest teacherRequest){
+    public void deleteTeacher(@RequestParam(name = "id",
+            required = true) String id){
 
-        teacherService.delete(teacherRequest);
+        teacherService.delete(id);
     }
 
     @PutMapping

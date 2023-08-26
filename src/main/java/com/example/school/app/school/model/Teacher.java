@@ -22,7 +22,7 @@ public class Teacher {
 
     @Id
     private String id;
-    private LocalDate dob;
+    private String dob;
     private String email;
     private Integer age;
     private String course;

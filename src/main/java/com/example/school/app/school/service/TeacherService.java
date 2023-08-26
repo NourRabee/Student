@@ -47,13 +47,13 @@ public class TeacherService {
     private Teacher requestToModel(TeacherRequest teacherRequest) {
 
         Teacher teacher;
-        LocalDate currentDate = LocalDate.now();
-        LocalDate dob = teacherRequest.getDob();
-        Period age = Period.between(dob, currentDate);
-        int years = age.getYears();
+//        LocalDate currentDate = LocalDate.now();
+//        String dob = teacherRequest.getDob();
+//        Period age = Period.between(dob, currentDate);
+//        int years = age.getYears();
 
         teacher = new Teacher(teacherRequest.getId(), teacherRequest.getDob()
-                , teacherRequest.getEmail(), years, teacherRequest.getCourse());
+                , teacherRequest.getEmail(), 30, teacherRequest.getCourse());
         return teacher;
 
     }
@@ -62,10 +62,15 @@ public class TeacherService {
 
        return modelToResponse(teacherRepository.findAll());
     }
+    public TeacherResponse read(String id) {
 
-    public void delete(TeacherRequest teacherRequest) {
+        return modelToResponse(teacherRepository.findById(id).get());
+    }
 
-        teacherRepository.deleteById(teacherRequest.getId());
+
+    public void delete(String id) {
+
+        teacherRepository.deleteById(id);
     }
 
     public void update(TeacherRequest teacherRequest) {

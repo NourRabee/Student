@@ -1,4 +1,5 @@
 package com.example.school.app.school.dto;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,6 +15,6 @@ public class TeacherRequest {
 
     private String id;
     private String email;
-    private LocalDate dob;
+    private String dob;
     private String course;
 }
