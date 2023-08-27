@@ -14,8 +14,12 @@ import java.util.stream.Collectors;
 @Service
 public class StudentService {
 
-    @Autowired
+
     public StudentRepository studentRepository;
+    @Autowired
+    public StudentService(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
+    }
 
     public List<StudentResponse> read() {
 

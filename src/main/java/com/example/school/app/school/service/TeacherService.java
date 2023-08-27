@@ -2,6 +2,7 @@ package com.example.school.app.school.service;
 
 import com.example.school.app.school.dto.TeacherRequest;
 import com.example.school.app.school.dto.TeacherResponse;
+import com.example.school.app.school.model.Student;
 import com.example.school.app.school.model.Teacher;
 import com.example.school.app.school.repository.TeacherRepository;
 
@@ -9,18 +10,19 @@ import com.example.school.app.school.repository.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.Period;
+import java.util.ArrayList;
 import java.util.List;
-import java.time.LocalDate;
 import java.util.stream.Collectors;
 
 @Service
 public class TeacherService {
 
     private final TeacherRepository teacherRepository;
+    private final StudentService studentService;
     @Autowired
-    public TeacherService(TeacherRepository teacherRepository) {
+    public TeacherService(TeacherRepository teacherRepository, StudentService studentService) {
         this.teacherRepository = teacherRepository;
+        this.studentService = studentService;
     }
 
     public TeacherResponse create(TeacherRequest teacherRequest) {
@@ -33,7 +35,7 @@ public class TeacherService {
     private TeacherResponse modelToResponse(Teacher teacher) {
 
         TeacherResponse response = new TeacherResponse(teacher.getId(),
-                teacher.getEmail(), teacher.getCourse(), teacher.getAge());
+                teacher.getEmail(), teacher.getCourse(), teacher.getAge(), teacher.getAssignedStudents().stream().toList());
 
         return response;
     }
@@ -46,14 +48,16 @@ public class TeacherService {
 
     private Teacher requestToModel(TeacherRequest teacherRequest) {
 
-        Teacher teacher;
-//        LocalDate currentDate = LocalDate.now();
-//        String dob = teacherRequest.getDob();
-//        Period age = Period.between(dob, currentDate);
-//        int years = age.getYears();
+        List<Student> students = new ArrayList<>();
+        for(String studentName: teacherRequest.getStudentsName()){
 
+            students.add(studentService.studentRepository.findById(studentName).get());
+
+        }
+
+        Teacher teacher;
         teacher = new Teacher(teacherRequest.getId(), teacherRequest.getDob()
-                , teacherRequest.getEmail(), 30, teacherRequest.getCourse());
+                , teacherRequest.getEmail(), 30, teacherRequest.getCourse(), students);
         return teacher;
 
     }
