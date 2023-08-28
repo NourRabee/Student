@@ -1,4 +1,5 @@
 package com.example.school.app.school.dto;
+import com.example.school.app.school.common.dto.BaseRequest;
 import com.example.school.app.school.model.Student;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
@@ -13,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @Setter
 @Getter
-public class TeacherRequest {
+public class TeacherRequest extends BaseRequest<String>{
 
     private String id;
     private String email;

@@ -1,5 +1,6 @@
 package com.example.school.app.school.dto;
 
+import com.example.school.app.school.common.dto.BaseResponse;
 import com.example.school.app.school.model.Student;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,12 +13,12 @@ import java.util.List;
 @NoArgsConstructor
 @Setter
 @Getter
-public class TeacherResponse {
+public class TeacherResponse extends BaseResponse {
 
     private String id;
     private String email;
     private String course;
-    private Integer age;
+    private int age;
     private List<Student> assignedStudents;
 
 }

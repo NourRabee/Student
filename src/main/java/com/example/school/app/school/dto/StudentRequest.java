@@ -1,5 +1,6 @@
 package com.example.school.app.school.dto;
 
+import com.example.school.app.school.common.dto.BaseRequest;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,11 +12,11 @@ import java.util.List;
 @NoArgsConstructor
 @Setter
 @Getter
-public class StudentRequest {
+public class StudentRequest extends BaseRequest<String> {
 
+    @Getter
     private String id;
     private String email;
     private int age;
-
 
 }

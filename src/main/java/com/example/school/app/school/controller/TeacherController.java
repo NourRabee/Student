@@ -2,7 +2,7 @@ package com.example.school.app.school.controller;
 
 import com.example.school.app.school.dto.TeacherRequest;
 import com.example.school.app.school.dto.TeacherResponse;
-import com.example.school.app.school.service.TeacherService;
+import com.example.school.app.school.service.impl.TeacherServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,17 +14,17 @@ import java.util.List;
 public class TeacherController {
 
 
-    private final TeacherService teacherService;
+    private final TeacherServiceImpl teacherServiceImpl;
 
     @Autowired
-    public TeacherController(TeacherService teacherService) {
-        this.teacherService = teacherService;
+    public TeacherController(TeacherServiceImpl teacherServiceImpl) {
+        this.teacherServiceImpl = teacherServiceImpl;
     }
 
     @PostMapping
     public TeacherResponse createTeacher(@RequestBody TeacherRequest teacherRequest){
 
-        return teacherService.create(teacherRequest);
+        return teacherServiceImpl.create(teacherRequest);
 
     }
     @GetMapping
@@ -33,21 +33,21 @@ public class TeacherController {
 
         if(id == null){
 
-            return teacherService.read();
+            return teacherServiceImpl.read();
         }else
-            return Collections.singletonList(teacherService.read(id));
+            return Collections.singletonList(teacherServiceImpl.read(id));
 
     }
     @DeleteMapping
     public void deleteTeacher(@RequestParam(name = "id",
             required = true) String id){
 
-        teacherService.delete(id);
+        teacherServiceImpl.delete(id);
     }
 
     @PutMapping
     public void updateTeacher(@RequestBody TeacherRequest teacherRequest){
-        teacherService.update(teacherRequest);
+        teacherServiceImpl.update(teacherRequest);
 
     }
 

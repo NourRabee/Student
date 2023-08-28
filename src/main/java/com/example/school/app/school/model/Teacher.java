@@ -1,5 +1,6 @@
 package com.example.school.app.school.model;
 
+import com.example.school.app.school.common.model.BaseModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,10 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,14 +18,12 @@ import java.util.List;
 @ToString
 @Entity
 @Table
-public class Teacher {
+public class Teacher extends BaseModel<String>{
 
     @Id
     private String id;
-    private String dob;
-    private String email;
-    private Integer age;
-    private String course;;
+    private int age;
+    private String course;
 
     @ManyToMany
     @JoinTable(name = "teacher_student",
@@ -34,4 +31,5 @@ public class Teacher {
             inverseJoinColumns = @JoinColumn(name = "student_id", referencedColumnName = "id")
     )
     private Collection<Student> assignedStudents= new ArrayList<>();
+
 }

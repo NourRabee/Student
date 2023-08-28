@@ -2,7 +2,7 @@ package com.example.school.app.school.controller;
 
 import com.example.school.app.school.dto.StudentRequest;
 import com.example.school.app.school.dto.StudentResponse;
-import com.example.school.app.school.service.StudentService;
+import com.example.school.app.school.service.impl.StudentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,23 +13,23 @@ import java.util.List;
 @RequestMapping("api/v1/student")
 public class StudentController {
 
-    private final StudentService studentService;
+    private final StudentServiceImpl studentServiceImpl;
     @Autowired
-    public StudentController(StudentService studentService) {
-        this.studentService = studentService;
+    public StudentController(StudentServiceImpl studentServiceImpl) {
+        this.studentServiceImpl = studentServiceImpl;
     }
 
 
     @PostMapping
     public StudentResponse addNewStudent(@RequestBody StudentRequest studentRequest) {
 
-        return studentService.create(studentRequest);
+        return studentServiceImpl.create(studentRequest);
     }
 
     @DeleteMapping
     public void deleteStudent(@RequestParam(name = "id",
             required = true) String id) {
-        studentService.delete(id);
+        studentServiceImpl.delete(id);
     }
 
     @GetMapping
@@ -38,15 +38,15 @@ public class StudentController {
             false) String id) {
         if (id == null) {
 
-            return studentService.read();
+            return studentServiceImpl.read();
         }
-        return Collections.singletonList(studentService.read(id));
+        return Collections.singletonList(studentServiceImpl.read(id));
     }
 
     @PutMapping
     public void updateStudent(@RequestBody StudentRequest studentRequest){
 
-        studentService.update(studentRequest);
+        studentServiceImpl.update(studentRequest);
     }
 
 }

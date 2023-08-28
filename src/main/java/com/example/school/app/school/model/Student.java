@@ -1,11 +1,8 @@
 package com.example.school.app.school.model;
 
+import com.example.school.app.school.common.model.BaseModel;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 
 @Entity
@@ -16,11 +13,9 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 
-public class Student {
+public class Student extends BaseModel<String> {
     @Id
     private String id;
-    private LocalDate dob;
-    private String email;
     private Integer age;
 
 }
