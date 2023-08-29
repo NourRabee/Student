@@ -1,1 +1,5 @@
-rootProject.name = 'school.app'
+rootProject.name = 'College'
+include('student-service')
+include('common')
+include('app-starter')
+include('teacher-service')

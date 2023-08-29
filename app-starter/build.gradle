@@ -7,23 +7,7 @@ plugins {
     id 'com.example.org.springframework.boot'
 }
 
-allprojects {
-
-
-    group = 'com.example.school.app'
-    version = '0.0.1-SNAPSHOT'
-
-    java {
-        sourceCompatibility = '20'
-    }
-
-    repositories {
-        mavenCentral()
-    }
-
-}
 dependencies {
-}
-bootJar {
-    enabled = false
+    implementation project(':student-service')
+    implementation project(':teacher-service')
 }
