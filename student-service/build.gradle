@@ -7,23 +7,13 @@ plugins {
     id 'com.example.org.springframework.boot'
 }
 
-allprojects {
 
-
-    group = 'com.example.school.app'
-    version = '0.0.1-SNAPSHOT'
-
-    java {
-        sourceCompatibility = '20'
-    }
-
-    repositories {
-        mavenCentral()
-    }
-
-}
 dependencies {
+    implementation project(':common')
 }
 bootJar {
     enabled = false
+}
+jar {
+    enabled = true
 }
